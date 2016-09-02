@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title><%= title %></title>
+    <link rel='stylesheet' href='/stylesheets/style.css' />
+  </head>
+  <body>
+    <h1><%= title %></h1>
+    <form action='/search-results' method='post'>
+      <input type="text" name="searchTerm1" placeholder="40.6449">
+      <br><br>
+      <input type="text" name="searchTerm2" placeholder="-3.1566">
+      <br><br>
+      <input type="text" name="searchTerm3" placeholder="20">
+      <select name="searchTerm4">
+		<option value="m">m</option>
+		<option value="km" selected>km</option>
+  	  </select>
+  	  <br><br>
+      <select name="searchTerm5">
+		<option value="Sum">Sum</option>
+		<option value="Average">Average</option>
+		<option value="Median">Median</option>
+  	  </select>
+  	  <select name="searchTerm6">
+		<option value="1">attribute1</option>
+		<option value="2">attribute2</option>
+		<option value="3">attribute3</option>
+		<option value="4">attribute4</option>
+		<option value="5">attribute5</option>
+		<option value="6">attribute6</option>
+		<option value="7">attribute7</option>
+		<option value="8">attribute8</option>
+		<option value="9">attribute9</option>
+		<option value="10">attribute10</option>
+		<option value="11">attribute11</option>
+		<option value="12">attribute12</option>
+		<option value="13">attribute13</option>
+		<option value="14">attribute14</option>
+		<option value="15">attribute15</option>
+  	  </select>
+      <br><br>
+      <button type="submit"> SEARCH </button>
+    </form>
+    <ul>
+      <% if(locals.results) {%>
+            <%= results.value %>
+      <% } %>
+    </ul>
+  </body>
+</html>
