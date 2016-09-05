@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title><%= title %></title>
+    <link rel='stylesheet' href='/stylesheets/style.css' />
+  </head>
+  <body>
+    <h1><%= title %></h1>
+    <form action='/search-results' method='post'>
+      <input type="text" name="lat" placeholder="Latitude">
+      <br><br>
+      <input type="text" name="lon" placeholder="Longitude">
+      <br><br>
+      <input type="text" name="radius" placeholder="Radius">
+      <select name="measure">
+    		<option value="m">m</option>
+    		<option value="km" selected>km</option>
+  	  </select>
+  	  <br><br>
+      <select name="operation">
+    		<option value="sum" selected>Sum</option>
+    		<option value="avg">Average</option>
+    		<option value="percentiles">Median</option>
+  	  </select>
+  	  <select name="attribute">
+    		<option value="attribute1" selected>attribute1</option>
+    		<option value="attribute2">attribute2</option>
+    		<option value="attribute3">attribute3</option>
+    		<option value="attribute4">attribute4</option>
+    		<option value="attribute5">attribute5</option>
+    		<option value="attribute6">attribute6</option>
+    		<option value="attribute7">attribute7</option>
+    		<option value="attribute8">attribute8</option>
+    		<option value="attribute9">attribute9</option>
+    		<option value="attribute10">attribute10</option>
+    		<option value="attribute11">attribute11</option>
+    		<option value="attribute12">attribute12</option>
+    		<option value="attribute13">attribute13</option>
+    		<option value="attribute14">attribute14</option>
+    		<option value="attribute15">attribute15</option>
+  	  </select>
+      <br><br>
+      <button type="submit"> SEARCH </button>
+    </form>
+    <% if(locals.dbErr !== undefined) {%>
+      <div style="color:red">
+      <h3>Database error: </h3> <%= dbErr %>
+      </div>
+    <% } %>
+
+    <% if(locals.errors !== undefined) {%>
+      <div style="color:red">
+      <h3>Errors: </h3>
+      <ul>
+        <% for(var i=0; i < errors.length; i++) {%>
+          <li><%= errors[i].msg %></li>
+        <% } %>
+      </ul>
+      </div>
+    <% } %>
+
+    <% if(locals.results !== undefined) {%>      
+      <h3>Result: </h3> <%= results %>
+    <% } %>
+    
+  </body>
+</html>
