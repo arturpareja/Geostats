@@ -7,45 +7,61 @@
   <body>
     <h1><%= title %></h1>
     <form action='/search-results' method='post'>
-      <input type="text" name="searchTerm1" placeholder="40.6449">
+      <input type="text" name="lat" placeholder="Latitude">
       <br><br>
-      <input type="text" name="searchTerm2" placeholder="-3.1566">
+      <input type="text" name="lon" placeholder="Longitude">
       <br><br>
-      <input type="text" name="searchTerm3" placeholder="20">
-      <select name="searchTerm4">
-		<option value="m">m</option>
-		<option value="km" selected>km</option>
+      <input type="text" name="radius" placeholder="Radius">
+      <select name="measure">
+    		<option value="m">m</option>
+    		<option value="km" selected>km</option>
   	  </select>
   	  <br><br>
-      <select name="searchTerm5">
-		<option value="Sum">Sum</option>
-		<option value="Average">Average</option>
-		<option value="Median">Median</option>
+      <select name="operation">
+    		<option value="sum" selected>Sum</option>
+    		<option value="avg">Average</option>
+    		<option value="percentiles">Median</option>
   	  </select>
-  	  <select name="searchTerm6">
-		<option value="1">attribute1</option>
-		<option value="2">attribute2</option>
-		<option value="3">attribute3</option>
-		<option value="4">attribute4</option>
-		<option value="5">attribute5</option>
-		<option value="6">attribute6</option>
-		<option value="7">attribute7</option>
-		<option value="8">attribute8</option>
-		<option value="9">attribute9</option>
-		<option value="10">attribute10</option>
-		<option value="11">attribute11</option>
-		<option value="12">attribute12</option>
-		<option value="13">attribute13</option>
-		<option value="14">attribute14</option>
-		<option value="15">attribute15</option>
+  	  <select name="attribute">
+    		<option value="attribute1" selected>attribute1</option>
+    		<option value="attribute2">attribute2</option>
+    		<option value="attribute3">attribute3</option>
+    		<option value="attribute4">attribute4</option>
+    		<option value="attribute5">attribute5</option>
+    		<option value="attribute6">attribute6</option>
+    		<option value="attribute7">attribute7</option>
+    		<option value="attribute8">attribute8</option>
+    		<option value="attribute9">attribute9</option>
+    		<option value="attribute10">attribute10</option>
+    		<option value="attribute11">attribute11</option>
+    		<option value="attribute12">attribute12</option>
+    		<option value="attribute13">attribute13</option>
+    		<option value="attribute14">attribute14</option>
+    		<option value="attribute15">attribute15</option>
   	  </select>
       <br><br>
       <button type="submit"> SEARCH </button>
     </form>
-    <ul>
-      <% if(locals.results) {%>
-            <%= results.value %>
-      <% } %>
-    </ul>
+    <% if(locals.dbErr !== undefined) {%>
+      <div style="color:red">
+      <h3>Database error: </h3> <%= dbErr %>
+      </div>
+    <% } %>
+
+    <% if(locals.errors !== undefined) {%>
+      <div style="color:red">
+      <h3>Errors: </h3>
+      <ul>
+        <% for(var i=0; i < errors.length; i++) {%>
+          <li><%= errors[i].msg %></li>
+        <% } %>
+      </ul>
+      </div>
+    <% } %>
+
+    <% if(locals.results !== undefined) {%>      
+      <h3>Result: </h3> <%= results %>
+    <% } %>
+    
   </body>
 </html>

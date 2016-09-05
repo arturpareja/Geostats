@@ -2,16 +2,14 @@ var express = require('express');
 var router = express.Router();
 
 var searchModule = require('../services/elasticsearch.js');
+var localityController = require('../controllers/locality.js');
 
 /* GET home page. */
 router.get('/', function(req, res) {
   res.render('index', { title: 'Geostats' });
 });
 
-router.post('/search-results', function(req, res) {
-  searchModule.search(req.body, function(data) {
-    res.render('index', { title: 'Geostats', results: data });
-  });
-});
+/* POST search form results */
+router.post('/search-results', localityController.getResults);
 
 module.exports = router;
